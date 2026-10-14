@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hand Gesture Detector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Hand Gesture Detector</h1>
+    <p class="sub">Show your hand to the camera: <strong>Fist</strong>, <strong>Pinch</strong>, or <strong>Palm</strong>.</p>
+  </header>
+
+  <main>
+    <section class="camera">
+      <div class="video-wrap">
+        <video id="video" autoplay playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div id="startPanel" class="start-panel">
+          <button id="startBtn">Start camera</button>
+          <p id="loadMsg" class="load-msg">Camera runs locally in your browser. Nothing is uploaded.</p>
+        </div>
+      </div>
+      <label class="toggle"><input type="checkbox" id="showSkeleton" checked /> Show hand skeleton</label>
+    </section>
+
+    <section class="status">
+      <div id="card" class="card idle" aria-live="polite">
+        <div id="cardTitle" class="card-title">Waiting</div>
+        <img id="cardImg" class="card-img" src="assets/palm.png" alt="" />
+        <div id="cardLabel" class="card-label">Press Start</div>
+        <div id="cardHint" class="card-hint"></div>
+      </div>
+
+      <div class="legend">
+        <div class="mini" data-g="fist"><img src="assets/fist.png" alt="" /><span>Fist</span></div>
+        <div class="mini" data-g="pinch"><img src="assets/pinch.png" alt="" /><span>Pinch</span></div>
+        <div class="mini" data-g="palm"><img src="assets/palm.png" alt="" /><span>Palm</span></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

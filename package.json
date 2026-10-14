@@ -1,0 +1,9 @@
+{
+  "name": "hci-project",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/gestures.test.mjs",
+    "start": "npx --yes serve ."
+  }
+}
