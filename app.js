@@ -4,6 +4,7 @@ import {
   DrawingUtils,
 } from "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.1.0/vision_bundle.mjs";
 import { classifyHand, GestureSmoother, GESTURES } from "./gestures.js";
+import { GestureController } from "./controller.js";
 
 const WASM_URL = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@1.1.0/wasm";
 const MODEL_URL =
@@ -41,6 +42,7 @@ let lastVideoTime = -1;
 let lastSeen = 0;
 let currentView = null;
 const smoother = new GestureSmoother();
+const controller = new GestureController();
 
 function showView(key) {
   if (key === currentView) return;
@@ -127,14 +129,21 @@ function loop() {
       const aspect = video.videoWidth / video.videoHeight || 4 / 3;
       const { gesture } = classifyHand(hand, aspect);
       showView(smoother.push(gesture));
+      const command = controller.update(gesture, hand, now);
+if (command) {
+  console.log("Gesture command:", command);
+}
+      
 
       if (showSkeleton.checked) {
         drawer.drawConnectors(hand, HandLandmarker.HAND_CONNECTIONS, { color: "#66b0a2", lineWidth: 4 });
         drawer.drawLandmarks(hand, { color: "#f0cd6c", lineWidth: 1, radius: 4 });
       }
-    } else if (now - lastSeen > LOST_AFTER_MS) {
-      smoother.reset();
-      showView("lost");
+  } else if (now - lastSeen > LOST_AFTER_MS) {
+  smoother.reset();
+  controller.reset();
+  showView("lost");
+}
     }
   }
   requestAnimationFrame(loop);
