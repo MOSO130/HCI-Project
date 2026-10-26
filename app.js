@@ -142,19 +142,19 @@ function loop() {
   } else if (command.type === "reset") {
     moleculeViewer.reset();
   }
-}
-      
+  }
 
-      if (showSkeleton.checked) {
-        drawer.drawConnectors(hand, HandLandmarker.HAND_CONNECTIONS, { color: "#66b0a2", lineWidth: 4 });
-        drawer.drawLandmarks(hand, { color: "#f0cd6c", lineWidth: 1, radius: 4 });
-      }
-  } else if (now - lastSeen > LOST_AFTER_MS) {
-  smoother.reset();
-  controller.reset();
-  showView("lost");
-}
+  if (showSkeleton.checked) {
+    drawer.drawConnectors(hand, HandLandmarker.HAND_CONNECTIONS, { color: "#66b0a2", lineWidth: 4 });
+    drawer.drawLandmarks(hand, { color: "#f0cdc6", lineWidth: 1, radius: 4 });
+  }
     }
+    } else if (now - lastSeen > LOST_AFTER_MS) {
+    smoother.reset();
+    controller.reset();
+    showView("lost");
+  }
+    
   }
   requestAnimationFrame(loop);
 }
