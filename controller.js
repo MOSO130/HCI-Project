@@ -84,4 +84,3 @@ export class GestureController {
     return null;
   }
 }
-}
