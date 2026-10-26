@@ -40,7 +40,8 @@ export class GestureController {
   dx: (wrist.x - this.lastWrist.x) * 0.35,
   dy: (wrist.y - this.lastWrist.y) * 0.35
 };
-
+      }
+      
       this.lastWrist = { x: wrist.x, y: wrist.y };
       return action;
     }
