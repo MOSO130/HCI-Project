@@ -155,7 +155,6 @@ function loop() {
     showView("lost");
   }
     
-  }
   requestAnimationFrame(loop);
 }
 
