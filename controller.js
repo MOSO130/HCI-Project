@@ -35,12 +35,11 @@ export class GestureController {
       let action = null;
 
       if (this.lastWrist) {
-        action = {
-          type: "rotate",
-          dx: wrist.x - this.lastWrist.x,
-          dy: wrist.y - this.lastWrist.y
-        };
-      }
+       action = {
+  type: "rotate",
+  dx: (wrist.x - this.lastWrist.x) * 0.35,
+  dy: (wrist.y - this.lastWrist.y) * 0.35
+};
 
       this.lastWrist = { x: wrist.x, y: wrist.y };
       return action;
