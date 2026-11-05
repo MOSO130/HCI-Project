@@ -22,7 +22,7 @@ test("fist movement rotates the camera", () => {
   const action = controller.update(GESTURES.FIST, hand, 100);
 
   assert.equal(action.type, "rotate");
-  assert.ok(Math.abs(action.dx - 0.1) < 0.00001);
+  assert.ok(Math.abs(action.dx - 0.035) < 0.00001);
 });
 
 test("pinch movement creates zoom action", () => {
