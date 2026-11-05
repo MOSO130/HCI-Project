@@ -83,12 +83,35 @@ function clearMolecule() {
   }
 }
 
+
+
+function showEthanol() {
+  clearMolecule();
+
+  const carbon1 = new THREE.Vector3(-1.2, 0, 0);
+  const carbon2 = new THREE.Vector3(0, 0);
+  const oxygen = new THREE.Vector3(1.2, 0.3, 0);
+  const hydrogen = new THREE.Vector3(2, -0.3, 0);
+
+  bond(carbon1, carbon2);
+  bond(carbon2, oxygen);
+  bond(oxygen, hydrogen);
+
+  atom(0.45, 0x333333, ...carbon1.toArray());
+  atom(0.45, 0x333333, ...carbon2.toArray());
+  atom(0.5, 0xff3333, ...oxygen.toArray());
+  atom(0.3, 0xffffff, ...hydrogen.toArray());
+}
+
 function switchMolecule(index) {
+
   currentMolecule = (index + MOLECULES.length) % MOLECULES.length;
 
-  if (currentMolecule === 0) {
-    showWater();
-  }
+if (currentMolecule === 0) {
+  showWater();
+} else if (currentMolecule === 4) {
+  showEthanol();
+}
 }
 
 
