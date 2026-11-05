@@ -131,19 +131,58 @@ function showCaffeine() {
     atom(0.35, color, ...p.toArray());
   });
 }
-function switchMolecule(index) {
+  
+function showAspirin() {
+  clearMolecule();
 
+  const positions = [
+    [-1.0, 1.0, 0],
+    [0.0, 1.5, 0],
+    [1.0, 1.0, 0],
+    [1.0, 0.0, 0],
+    [0.0, -0.5, 0],
+    [-1.0, 0.0, 0],
+    [2.0, 1.5, 0],
+    [2.8, 1.0, 0],
+    [-2.0, 0.0, 0]
+  ];
+
+  const points = positions.map(
+    ([x, y, z]) => new THREE.Vector3(x, y, z)
+  );
+
+  const connections = [
+    [0, 1], [1, 2], [2, 3],
+    [3, 4], [4, 5], [5, 0],
+    [2, 6], [6, 7], [5, 8]
+  ];
+
+  connections.forEach(([a, b]) => {
+    bond(points[a], points[b]);
+  });
+
+  points.forEach((p, i) => {
+    const color = [7, 8].includes(i)
+      ? 0xff3333
+      : 0x333333;
+
+    atom(0.35, color, ...p.toArray());
+  });
+}
+  
+function switchMolecule(index) {
   currentMolecule = (index + MOLECULES.length) % MOLECULES.length;
 
-if (currentMolecule === 0) {
-  showWater();
-} else if (currentMolecule === 1) {
-  showCaffeine();
-} else if (currentMolecule === 4) {
-  showEthanol();
+  if (currentMolecule === 0) {
+    showWater();
+  } else if (currentMolecule === 1) {
+    showCaffeine();
+  } else if (currentMolecule === 2) {
+    showAspirin();
+  } else if (currentMolecule === 4) {
+    showEthanol();
+  }
 }
-}
-
 
   scene.add(new THREE.AmbientLight(0xffffff, 1.5));
 
