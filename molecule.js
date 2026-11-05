@@ -217,7 +217,68 @@ function showAdenine() {
     atom(0.35, color, ...p.toArray());
   });
 }
+function showBenzene() {
+  clearMolecule();
 
+  const carbons = [];
+  const hydrogens = [];
+
+  for (let i = 0; i < 6; i++) {
+    const angle = (i * Math.PI) / 3;
+
+    carbons.push(new THREE.Vector3(
+      1.2 * Math.cos(angle),
+      1.2 * Math.sin(angle),
+      0
+    ));
+
+    hydrogens.push(new THREE.Vector3(
+      2.1 * Math.cos(angle),
+      2.1 * Math.sin(angle),
+      0
+    ));
+  }
+
+  for (let i = 0; i < 6; i++) {
+    bond(carbons[i], carbons[(i + 1) % 6]);
+    bond(carbons[i], hydrogens[i]);
+
+    atom(0.35, 0x333333, ...carbons[i].toArray());
+    atom(0.25, 0xffffff, ...hydrogens[i].toArray());
+  }
+}
+  function showGlucose() {
+  clearMolecule();
+
+  const carbons = [];
+  const oxygens = [];
+
+  for (let i = 0; i < 6; i++) {
+    const angle = (i * Math.PI) / 3;
+
+    carbons.push(new THREE.Vector3(
+      1.2 * Math.cos(angle),
+      1.2 * Math.sin(angle),
+      0
+    ));
+  }
+
+  for (let i = 0; i < 6; i++) {
+    bond(carbons[i], carbons[(i + 1) % 6]);
+
+    const angle = (i * Math.PI) / 3;
+    oxygens.push(new THREE.Vector3(
+      2.1 * Math.cos(angle),
+      2.1 * Math.sin(angle),
+      0
+    ));
+
+    bond(carbons[i], oxygens[i]);
+
+    atom(0.35, 0x333333, ...carbons[i].toArray());
+    atom(0.3, 0xff3333, ...oxygens[i].toArray());
+  }
+}
   function switchMolecule(index) {
   currentMolecule = (index + MOLECULES.length) % MOLECULES.length;
 
@@ -231,8 +292,13 @@ function showAdenine() {
   showAdenine();
   } else if (currentMolecule === 4) {
     showEthanol();
-  }
+  } else if (currentMolecule === 5) {
+  showBenzene();
+} else if (currentMolecule === 6) {
+  showGlucose();
 }
+}
+
 
   scene.add(new THREE.AmbientLight(0xffffff, 1.5));
 
