@@ -42,6 +42,14 @@ export function createMoleculeViewer(container) {
     molecule.add(mesh);
   }
 
+function showWater() {
+  while (molecule.children.length > 0) {
+    const child = molecule.children[0];
+    molecule.remove(child);
+    child.geometry.dispose();
+    child.material.dispose();
+  }
+
   const oxygen = new THREE.Vector3(0, 0.5, 0);
   const hydrogen1 = new THREE.Vector3(-1.1, -0.5, 0);
   const hydrogen2 = new THREE.Vector3(1.1, -0.5, 0);
@@ -52,6 +60,10 @@ export function createMoleculeViewer(container) {
   atom(0.55, 0xff3333, ...oxygen.toArray());
   atom(0.35, 0xffffff, ...hydrogen1.toArray());
   atom(0.35, 0xffffff, ...hydrogen2.toArray());
+}
+
+showWater();
+
 
   scene.add(new THREE.AmbientLight(0xffffff, 1.5));
 
