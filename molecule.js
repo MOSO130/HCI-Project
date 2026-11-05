@@ -63,6 +63,17 @@ function showWater() {
 }
 
 showWater();
+const MOLECULES = [
+  "Water",
+  "Caffeine",
+  "Aspirin",
+  "Adenine",
+  "Ethanol",
+  "Benzene",
+  "Glucose"
+];
+
+let currentMolecule = 0;
 
 
   scene.add(new THREE.AmbientLight(0xffffff, 1.5));
