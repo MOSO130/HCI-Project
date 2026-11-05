@@ -12,9 +12,18 @@ export function createMoleculeViewer(container) {
   );
   camera.position.z = 7;
 
-  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(container.clientWidth, container.clientHeight);
-  container.appendChild(renderer.domElement);
+ const renderer = new THREE.WebGLRenderer({
+  antialias: true,
+  alpha: true
+});
+
+renderer.setSize(container.clientWidth, container.clientHeight);
+renderer.domElement.style.position = "relative";
+renderer.domElement.style.display = "block";
+renderer.domElement.style.width = "100%";
+renderer.domElement.style.height = "100%";
+
+container.appendChild(renderer.domElement);
 
   const molecule = new THREE.Group();
   scene.add(molecule);
