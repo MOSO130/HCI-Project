@@ -102,13 +102,43 @@ function showEthanol() {
   atom(0.5, 0xff3333, ...oxygen.toArray());
   atom(0.3, 0xffffff, ...hydrogen.toArray());
 }
+function showCaffeine() {
+  clearMolecule();
 
+  const positions = [
+    [-1.4, 0.5, 0], [-0.5, 1.1, 0],
+    [0.5, 1.1, 0], [1.4, 0.5, 0],
+    [0.8, -0.5, 0], [-0.3, -0.7, 0],
+    [-1.4, -0.6, 0], [1.7, -0.6, 0]
+  ];
+
+  const points = positions.map(
+    ([x, y, z]) => new THREE.Vector3(x, y, z)
+  );
+
+  const connections = [
+    [0, 1], [1, 2], [2, 3], [3, 4],
+    [4, 5], [5, 6], [6, 0], [4, 7]
+  ];
+
+  connections.forEach(([a, b]) => bond(points[a], points[b]));
+
+  points.forEach((p, i) => {
+    const color = [1, 3, 6, 7].includes(i)
+      ? 0x3366ff
+      : 0x333333;
+
+    atom(0.35, color, ...p.toArray());
+  });
+}
 function switchMolecule(index) {
 
   currentMolecule = (index + MOLECULES.length) % MOLECULES.length;
 
 if (currentMolecule === 0) {
   showWater();
+} else if (currentMolecule === 1) {
+  showCaffeine();
 } else if (currentMolecule === 4) {
   showEthanol();
 }
