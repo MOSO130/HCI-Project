@@ -170,7 +170,46 @@ function showAspirin() {
   });
 }
   
-function switchMolecule(index) {
+
+function showAdenine() {
+  clearMolecule();
+
+  const positions = [
+    [-1.2, 0, 0],
+    [-0.6, 1, 0],
+    [0.6, 1, 0],
+    [1.2, 0, 0],
+    [0.6, -1, 0],
+    [-0.6, -1, 0],
+    [1.8, 1, 0],
+    [2.8, 0.5, 0],
+    [2.5, -0.7, 0],
+    [1.3, -1.3, 0]
+  ];
+
+  const points = positions.map(
+    ([x, y, z]) => new THREE.Vector3(x, y, z)
+  );
+
+  const connections = [
+    [0, 1], [1, 2], [2, 3],
+    [3, 4], [4, 5], [5, 0],
+    [2, 6], [6, 7], [7, 8],
+    [8, 9], [9, 4]
+  ];
+
+  connections.forEach(([a, b]) => bond(points[a], points[b]));
+
+  points.forEach((p, i) => {
+    const color = [1, 3, 6, 8].includes(i)
+      ? 0x3366ff
+      : 0x333333;
+
+    atom(0.35, color, ...p.toArray());
+  });
+}
+
+  function switchMolecule(index) {
   currentMolecule = (index + MOLECULES.length) % MOLECULES.length;
 
   if (currentMolecule === 0) {
@@ -179,6 +218,8 @@ function switchMolecule(index) {
     showCaffeine();
   } else if (currentMolecule === 2) {
     showAspirin();
+    } else if (currentMolecule === 3) {
+  showAdenine();
   } else if (currentMolecule === 4) {
     showEthanol();
   }
