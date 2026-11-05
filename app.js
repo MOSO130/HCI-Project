@@ -21,7 +21,7 @@ const startBtn = document.getElementById("startBtn");
 const startPanel = document.getElementById("startPanel");
 const loadMsg = document.getElementById("loadMsg");
 const showSkeleton = document.getElementById("showSkeleton");
-
+const moleculeSelect = document.getElementById("moleculeSelect");
 const card = document.getElementById("card");
 const cardTitle = document.getElementById("cardTitle");
 const cardImg = document.getElementById("cardImg");
@@ -47,7 +47,9 @@ const controller = new GestureController();
 const moleculeViewer = createMoleculeViewer(
   document.getElementById("moleculeViewer")
 );
-
+moleculeSelect.addEventListener("change", () => {
+  moleculeViewer.switchMolecule(Number(moleculeSelect.value));
+});
 function showView(key) {
   if (key === currentView) return;
   currentView = key;
