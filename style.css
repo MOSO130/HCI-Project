@@ -151,7 +151,7 @@ button:disabled { opacity: 0.6; cursor: wait; }
   height: 100%;
 }
 
-#molSelect {
+#moleculeSelect {
   margin: 10px 0;
   padding: 8px;
   border-radius: 8px;
