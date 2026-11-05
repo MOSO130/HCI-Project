@@ -128,6 +128,9 @@ if (currentMolecule === 0) {
   animate();
 
   return {
+    switchMolecule,
+    MOLECULES,
+    
     rotate(dx, dy) {
       molecule.rotation.y += dx * 5;
       molecule.rotation.x += dy * 5;
