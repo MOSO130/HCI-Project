@@ -126,3 +126,33 @@ button:disabled { opacity: 0.6; cursor: wait; }
 }
 .mini img { width: 56px; height: 52px; object-fit: contain; display: block; margin: 0 auto 4px; }
 .mini.on { opacity: 1; }
+
+/* 3D Molecule Viewer */
+.molecule-section {
+  flex: 1 1 400px;
+  max-width: 600px;
+  min-width: 0;
+}
+
+#moleculeViewer {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: #202826;
+  border: 6px solid #66b6a2;
+  border-radius: 20px;
+  margin-top: 15px;
+}
+
+#moleculeViewer canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+#molSelect {
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 8px;
+}
