@@ -74,6 +74,22 @@ const MOLECULES = [
 ];
 
 let currentMolecule = 0;
+function clearMolecule() {
+  while (molecule.children.length > 0) {
+    const child = molecule.children[0];
+    molecule.remove(child);
+    child.geometry.dispose();
+    child.material.dispose();
+  }
+}
+
+function switchMolecule(index) {
+  currentMolecule = (index + MOLECULES.length) % MOLECULES.length;
+
+  if (currentMolecule === 0) {
+    showWater();
+  }
+}
 
 
   scene.add(new THREE.AmbientLight(0xffffff, 1.5));
